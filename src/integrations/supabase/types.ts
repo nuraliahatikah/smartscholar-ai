@@ -14,7 +14,113 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      profiles: {
+        Row: {
+          cgpa: number | null
+          course: string | null
+          created_at: string
+          full_name: string | null
+          household_income: number | null
+          id: string
+          interests: string[] | null
+          university: string | null
+          updated_at: string
+        }
+        Insert: {
+          cgpa?: number | null
+          course?: string | null
+          created_at?: string
+          full_name?: string | null
+          household_income?: number | null
+          id: string
+          interests?: string[] | null
+          university?: string | null
+          updated_at?: string
+        }
+        Update: {
+          cgpa?: number | null
+          course?: string | null
+          created_at?: string
+          full_name?: string | null
+          household_income?: number | null
+          id?: string
+          interests?: string[] | null
+          university?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      saved_scholarships: {
+        Row: {
+          created_at: string
+          id: string
+          scholarship_id: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          scholarship_id: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          scholarship_id?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "saved_scholarships_scholarship_id_fkey"
+            columns: ["scholarship_id"]
+            isOneToOne: false
+            referencedRelation: "scholarships"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      scholarships: {
+        Row: {
+          amount: number
+          created_at: string
+          deadline: string
+          description: string
+          eligibility: string
+          id: string
+          max_household_income: number | null
+          min_cgpa: number | null
+          name: string
+          provider: string
+          tags: string[] | null
+        }
+        Insert: {
+          amount: number
+          created_at?: string
+          deadline: string
+          description: string
+          eligibility: string
+          id?: string
+          max_household_income?: number | null
+          min_cgpa?: number | null
+          name: string
+          provider: string
+          tags?: string[] | null
+        }
+        Update: {
+          amount?: number
+          created_at?: string
+          deadline?: string
+          description?: string
+          eligibility?: string
+          id?: string
+          max_household_income?: number | null
+          min_cgpa?: number | null
+          name?: string
+          provider?: string
+          tags?: string[] | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
